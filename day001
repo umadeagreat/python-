@@ -33,3 +33,21 @@ joblib.dump(modle, "music-recommendation.joblib") #dump表示将其储存为模�
 model = joblib.load("music-recommendation.joblib") #加载模型、进行预测
 predictions = model.predict([[21,1]])
 predictions
+--------------------------------------------------------------------
+案例3：决策树的可视化
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import tree
+
+music_data = pd.read_csv("music.csv")
+X = music_data.drop(columns = ["genre"])
+y = music_data["genre"]
+modle = DecisionTreeClassifier()
+modle.fit(X, y) 
+tree.export_graphviz(modle,out_file="music-recommendation.dot", #将其保存为dot文件类型
+    feature_names = ["age", "genre"], #作为输入类别名称，按表格顺序输入
+    class_names=sorted(y.unique()), #y作为输出类别包含多种类型，在结果中会出现多次，应用unique并用sort将其按顺序排列
+     label = "all", #使得决策树解释更清晰
+     rounded = True, #输出图表为圆角
+     filled=True) #每一个决策框都有自己的颜色
+
