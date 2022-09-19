@@ -30,3 +30,6 @@ y = music_data["genre"]
 modle = DecisionTreeClassifier()
 modle.fit(X, y) 
 joblib.dump(modle, "music-recommendation.joblib") #dump表示将其储存为模型
+model = joblib.load("music-recommendation.joblib") #加载模型、进行预测
+predictions = model.predict([[21,1]])
+predictions
