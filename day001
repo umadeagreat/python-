@@ -1,7 +1,6 @@
-利用jupyter进行一个机器学习的基础案例：1.control+enter可以反复执行命令得到不同结果；
-2.迅速按两次tab可以选择需要的函数；
-3.tab+shift可以看到函数的使用方法和属性。
+利用jupyter进行一个机器学习的基础案例：control+enter可以反复执行命令得到不同结果；迅速按两次tab可以选择需要的函数；tab+shift可以看到函数的使用方法和属性。
 本案例中的机器学习的基本步骤：读取数据>>>分割数据集：训练集和测试集>>>按精度比例随机选取成为两种集合的元素们>>>进行训练>>>进行预测>>>进行精度对比
+案例1：机器学习基本步骤
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
@@ -17,3 +16,17 @@ modle.fit(X_train, y_train) #训练模型
 predictions = modle.predict(X_test) #进行预测
 accuracy = accuracy_score(y_test, predictions)
 accuracy
+
+---------------------------------------------------------------------------------
+
+案例2：将上述模型保存为可以直接使用的模型：
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+import joblib
+
+
+X = music_data.drop(columns = ["genre"]) #选择需要的数据集
+y = music_data["genre"]
+modle = DecisionTreeClassifier()
+modle.fit(X, y) 
+joblib.dump(modle, "music-recommendation.joblib") #dump表示将其储存为模型
