@@ -61,3 +61,70 @@ if a + b > c and a + c > b and b + c > a :
     print(f"三角形的周长为{tri_l},三角形的面积为{tri_s}")
 else:
     print("不能构成三角形")
+---------------------------------------
+#练习007：猜谜游戏#
+import random
+
+answer = random.randint(1, 100)
+counter = 0
+while counter < 3:
+    counter += 1
+    number = int(input('请输入: '))
+    if number < answer:
+        print('大一点')
+    elif number > answer:
+        print('小一点')
+    else:
+        print('恭喜你猜对了!')
+        break
+else :
+    print('你输了')
+print('你总共猜了%d次' % counter)
+--------------------------------------
+#练习008：九九乘法表#
+for i in range(1, 10):
+    for j in range(1, i + 1):
+        print('%d*%d=%d' % (i, j, i * j),end= "\t")
+    print()
+#其中，\t表示制表符，即用于对齐表格数据#
+--------------------------------------
+#练习009：输入一个正整数判断是不是素数#
+number = int(input("Please type a positive number > 1:"))
+if number > 1:
+    for i in range(2, number):
+        if number % i == 0:
+            print("这个数并非素数")
+            break                  #break是指当if成真则终止运行，若bool = False则一直循环#
+    else:
+        print("这个数是一个素数")
+else:                             #与for同等级别的else语句，代表的是当循环完所有值之后都未能找到符合其条件的值，再执行的语句#
+    print("请输入一个大于1的数")
+ ------------------------------------
+※※※#练习010：输入两个正整数，计算它们的最大公约数和最小公倍数#
+x = int(input('x = '))
+y = int(input('y = '))
+if x > y:
+    x, y = y, x
+for factor in range(x, 0, -1):
+    if x % factor == 0 and y % factor == 0:
+        print('%d和%d的最大公约数是%d' % (x, y, factor))
+        print('%d和%d的最小公倍数是%d' % (x, y, x * y // factor))
+        break
+#最小公倍数的公式：两数乘积/最大公约数，所以可先找最大公约数再找最小公倍数#
+---------------------------------------
+#练习010：打印如下所示的三角形图案#
+row = int(input("请输入行数： "))
+for i in range(1 , row+1):
+    print(f"{'*' * i }")
+    
+row = int(input("请输入行数："))
+nums = row + 1
+for i in range(1 , nums):
+    j = int(row - i)
+    print(f"{' ' * j} {'*' * i }")
+    
+row = int(input("请输入行数： "))
+nums = int(row * 2)
+for i in range(1 , nums, 2):
+    j = int((nums-i)/2)
+    print(f"{' ' * j} {'*' * i } {'' * j}")
