@@ -97,6 +97,27 @@ dic.pop("",{})#删除一个不存在的键值对，返回花括弧里的内容�
 dic.popitem()#删除字典最后一组键值对并返回对应的键值对#
 dic.setdefault()#往字典中添加键值对的一种方法#
 dic.update(others)#将others这个字典添加到dic字典中#
+# 练习001：输入一段话，统计每个英文字母出现的次数。
+sentence = input("请输入一句话")
+count = {}
+for ch in sentence:
+    if "a" <= ch.lower() <= "z":
+        count[ch] = count.get(ch, 0) + 1
+
+for keys, values in count.items():
+    print(f"{keys} 出现了 {values}次")
+# 练习002：在一个字典中保存了股票的代码和价格，找出股价大于100元的股票并创建一个新的字典
+stocks = {
+    'AAPL': 191.88,
+    'GOOG': 1186.96,
+    'IBM': 149.24,
+    'ORCL': 48.44,
+    'ACN': 166.89,
+    'FB': 208.09,
+    'SYMC': 21.29
+}
+new = {keys:values for keys,values in stocks.items() if values > 100}
+print(new)
 
 
 
