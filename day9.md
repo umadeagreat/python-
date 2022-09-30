@@ -7,6 +7,52 @@ oct() #将整数转换为八进制字符串#
 hex() #将整数转换为十六进制字符串#
 pow() #进行幂运算#
 round() #四舍五入取整数，可以指定保留小数点之后的位数#
+# 学习002：关键词参数
+1.若无特殊处理，默认函数中的参数全为位置参数(可按顺序调用参数，可不按顺序)，若希望用关键词= 参数命名，可在参数之前添加*（命名关键词参数）
+2.位置参数：*args  关键词参数：**kwargs
+3.*****位置参数（不带参数名的参数）必须出现在关键词参数（带有参数名的参数）之前，这两个参数的
+# 学习003：高阶函数的用法
+1.二元运算函数也可以在总函数定义时被赋予一个默认的函数运算
+def calc(*args, init_values, op, **kwargs):
+
+    result = init_values
+    for arg in args:
+        if type(arg) in (int, float):
+            result = op(result, arg)
+    for value in kwargs.values():
+        if type(value) in (int, float):
+            result = op(result, value) 
+    return result
+
+
+def add(x, y):
+    return  x + y
+
+
+def mul(x, y):
+    return x * y
+
+print(calc(1, 2, 3, init_value=0, op=add, x=4, y=5))  
+print(calc(1, 2, x=3, y=4, z=5, init_values=1, op=mul)) #参数的位置可以跟设定时不一样，程序可以自动识别，赋给二元函数运算时不用加括号，加函数名称即可#
+
+# 学习004：map和square函数：
+def is_ou(number):
+    return number % 2 == 0
+
+
+def square(number):
+    return number ** 2
+
+number1 = [33, 56, 79, 68, 42, 21, 6, 3]
+number2 = list(map(square, filter(is_ou, number1))) #map(所要使用的函数名称，所要处理的对象)：对后面的元素进行一一的函数映射；filter（条件，要被筛选的数列）：留下数列中符合条件的元素，条件是True or false，一般是根据bool值来判断#
+print(number2)
+采用生成法简化：number2 = list(number ** 2 for number in number1 if number % 2 == 0)
+# 学习005：lambda函数：又称匿名函数，简单，只有一行代码
+1.用lambda函数代替简单的is_ou函数和square函数
+number2 = list(map(lambda x : x ** 2, filter(lambda x : x % 2 == 0,number1)))
+2.用lambda函数、map函数生成is_prime函数，判断一个数是否为素数
+is_prime = lambda x : x > 1 and all(map(lambda f : x % f, range(2, int(x ** 0.5) + 1))) #all函数代表如果所有的结果都为True则输出True#
+
 # 练习001：生成随机验证码
 import random
 import string
