@@ -1,4 +1,4 @@
-# 面向对象编程入门
+# 第十六课：面向对象编程入门
 # 案例1：定义一个类描述数字时钟
 import time
 
@@ -53,7 +53,7 @@ class Point(object):
     def __str__(self): #与__repr__的区别在于：str是可读的返回的是字符串，repr主要用于调试返回的是对象本身，举例datetime()#
         return  f"({self.x},{self.y})"
         
-# 面向对象编程进阶：
+# 第十七课：面向对象编程进阶
 # 学习001：可见性和属性装饰器
 class Student:
 
@@ -155,6 +155,7 @@ class teacher(Person):
 
 t1 = teacher("Mary", 24, "professor", "Math")
 t1.teach()
+# 第十八课：面向对象编程应用
 
 
 
