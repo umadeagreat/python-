@@ -156,6 +156,44 @@ class teacher(Person):
 t1 = teacher("Mary", 24, "professor", "Math")
 t1.teach()
 # 第十八课：面向对象编程应用
+from abc import ABCMeta, abstractmethod 
+class Employees(metaclass= ABCMeta): #定义为抽象类#
+    def __init__(self,name):
+        self.name = name
+
+    @abstractmethod #说明父类的这种方法是抽象的，需要子类另写#
+    def get_salary(self):
+        pass #略过#
+
+class Manager(Employees):
+    def get_salary(self):#没有新的属性，不用重写init#
+        return 15000
+
+class Programmers(Employees):
+    def __init__(self, name, working_hours = 0):
+        super(Programmers, self).__init__(name)
+        self.working_hours = working_hours
+
+    def get_salary(self):
+        return 200 * self.working_hours
+
+class sellors(Employees):
+    def __init__(self, name, sales = 0):
+        super().__init__(name)
+        self.sales = sales
+
+    def get_salary(self):
+        return 1800 + self.sales * 0.05
+
+emps = [Manager("Jing"), Programmers("Ming"), sellors("Ning")]
+for emp in emps: #其中的元素属于对象，可以调用属性可以使用方法#
+    if isinstance(emp, Programmers): #isinstance判断该元素是否为所属类别，type也可以，但是isinstance的功能更强大#
+        emp.working_hours = int(input(f"请输入{emp.name}本月工作时长 "))
+    elif isinstance(emp, sellors):
+        emp.sales = float(input(f"请输入{emp.name}本月销售额 "))
+    print(f"{emp.name}本月工资为:{emp.get_salary():.2f}元")
+
+
 
 
 
