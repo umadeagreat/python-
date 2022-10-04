@@ -1,5 +1,7 @@
 # 第十六课：面向对象编程入门
 # 案例1：定义一个类描述数字时钟
+
+
 import time
 
 
@@ -138,7 +140,7 @@ class Person():
 
 class Student(Person): #子类括号里为父类#
     def __init__(self, name, age, course): #初始化过程中子类需要的属性#
-        super(Student, self).__init__(name, age) #通过super函数继承父类的属性和方法（？）#
+        super(Student, self).__init__(name, age) #通过super函数继承父类的属性#
         self.course = course #子类自己另外添加的属性#
 
     def learn(self):
