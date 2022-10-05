@@ -97,4 +97,5 @@ from openpyxl.chart import BarChart, Reference
 
 wb = xl.Workbook(write_only=True)
 sheet = wb.create_sheet()
-
+# 26课：用python操作word和PowerPoint
+# 27~29课:用python处理pdf（提取文字）、发送邮件、处理图片
