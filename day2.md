@@ -162,3 +162,32 @@ ORDER BY s.name
 SELECT s.name, p.name
 FROM shippers s,products p
 ORDER BY s.name
+
+十五、用UNION合并SELECT语句：
+
+SELECT order_date,"Active" AS state
+FROM orders
+WHERE order_date >= "2019-01-01"
+UNION
+SELECT order_date,"Archived" AS state
+FROM orders
+WHERE order_date < "2019-01-01"
+ORDER BY order_date -- 前提是两个SELECT语句选择的列的数量要相同（一一对应）
+
+练习：
+SELECT customer_id, first_name, points, "Bronze" AS "type"
+FROM customers
+WHERE points < 2000
+UNION
+SELECT customer_id, first_name, points, "Silver" AS "type"
+FROM customers
+WHERE points BETWEEN 2000 AND 3000
+UNION
+SELECT customer_id, first_name, points, "Gold" AS "type"
+FROM customers
+WHERE points > 3000
+ORDER BY first_name
+
+十六、往表格中添加行：
+INSERT INTO customers(first_name, last_name, address, city, state ) --要往x表格中添加的列
+VALUES('John', 'Smith', 'Hollinton Street', 'Boston', 'CA') --对应上述列，输入要添加的值，若有默认值或者允许为空值的，可以不用输入
